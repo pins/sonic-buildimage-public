@@ -46,6 +46,9 @@ RUN echo "deb [arch=arm64] http://deb.debian.org/debian buster main contrib non-
 ## Make apt-get non-interactive
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Workaround for Google corp machine.
+RUN chmod 664 /etc/apt/trusted.gpg.d/public_key.gpg
+
 RUN apt-get update && apt-get install -y \
         apt-utils \
         default-jre-headless \

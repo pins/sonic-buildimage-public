@@ -37,6 +37,9 @@ COPY ["sources.list", "/etc/apt/sources.list"]
 COPY ["no_install_recommend_suggest", "/etc/apt/apt.conf.d"]
 COPY ["no-check-valid-until", "/etc/apt/apt.conf.d"]
 
+# Workaround for Google corp machine.
+RUN chmod 664 /etc/apt/trusted.gpg.d/public_key.gpg
+
 # Update apt cache and
 # pre-install fundamental packages
 RUN apt-get update &&        \
