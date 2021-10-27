@@ -533,3 +533,8 @@ RUN apt-get install -y nodejs
 # Tell azure pipeline to use node.js in the docker
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
 {% endif -%}
+
+# Install Bazel build system (amd64 and arm64 architectures are supported using this method)
+ARG bazelisk_version=1.10.1
+ARG bazelisk_url=https://github.com/bazelbuild/bazelisk/releases/download/v${bazelisk_version}/bazelisk-linux-{{ CONFIGURED_ARCH }}
+RUN curl -fsSL ${bazelisk_url} > /usr/local/bin/bazel && chmod 755 /usr/local/bin/bazel
